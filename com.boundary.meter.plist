@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+
+Installation Instructions
+=========================
+
+By default the Boundary Meter downloads the tarball to the home directory of the user installing the meter.
+
+The meter is then run out of this directory. 
+
+To have the boundary meter to be started by the launchdctld perform the following:
+
+1) Extract the boundary-meter tarball to /usr/local:
+
+$ cd /usr/local && sudo $HOME/boundary-meter.tar.gz
+
+2) Change the ownership of the files and directory:
+
+$ sudo chown -R boundary:staff /usr/local/boundary-meter
+
+3) Copy the com.boundary.meter.plist to /Library/LaunchDaemons
+
+$ sudo cp com.boundary.meter.plist /Library/LaunchDaemons
+
+
+Starting the Boundary Meter
+===========================
+
+1) Start the boundary meter using launchctl:
+
+$ sudo launchctl load -w /Library/LaunchDaemon/com.boundary.meter.plist
+
+Stopping the Boundary Meter
+===========================
+
+1) Stop the boundary meter using launchctl:
+
+$ sudo launchctl unload -w /Library/LaunchDaemon/com.boundary.meter.plist
+
+-->
+<plist version="1.0">
+  <dict>
+    <key>boundary-meter</key>
+    <string>com.boundary.meter</string>
+    <key>ProgramArguments</key>
+      <array>
+        <string>/usr/local/boundary-meter/start.sh</string>
+      </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/var/log/boundary-meter.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/var/log/boundary-meter.stdout</string>
+    <key>WorkingDirectory</key>
+    <string>/usr/local/boundary-meter</string>
+  </dict>
+</plist>
