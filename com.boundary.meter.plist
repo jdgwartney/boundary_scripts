@@ -29,14 +29,14 @@ Starting the Boundary Meter
 
 1) Start the boundary meter using launchctl:
 
-$ sudo launchctl load -w /Library/LaunchDaemon/com.boundary.meter.plist
+$ sudo launchctl load -w /Library/LaunchDaemons/com.boundary.meter.plist
 
 Stopping the Boundary Meter
 ===========================
 
 1) Stop the boundary meter using launchctl:
 
-$ sudo launchctl unload -w /Library/LaunchDaemon/com.boundary.meter.plist
+$ sudo launchctl unload -w /Library/LaunchDaemons/com.boundary.meter.plist
 
 -->
 <plist version="1.0">
@@ -49,6 +49,10 @@ $ sudo launchctl unload -w /Library/LaunchDaemon/com.boundary.meter.plist
       </array>
     <key>RunAtLoad</key>
     <true/>
+    <key>UserName</key>
+    <string>boundary</string>
+    <key>GroupName</key>
+    <string>staff</string>
     <key>StandardErrorPath</key>
     <string>/var/log/boundary-meter.stderr</string>
     <key>StandardOutPath</key>
